@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"newsfeeder/platform/newsfeed"
+	"github.com/aidarkhanov/nanoid"
 )
 
 type newfeedPostRequest struct {
@@ -17,6 +18,7 @@ func NewFeedPost(feed newsfeed.Adder) gin.HandlerFunc {
 		c.Bind(&requestBody)
 
 		item := newsfeed.Item{
+			Id: nanoid.New(),
 			Title: requestBody.Title,
 			Post:  requestBody.Post,
 		}
